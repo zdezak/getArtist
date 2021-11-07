@@ -1,4 +1,4 @@
-package com.zdez.getartist.ui.main
+package com.zdez.getartist.main
 
 import androidx.lifecycle.ViewModel
 

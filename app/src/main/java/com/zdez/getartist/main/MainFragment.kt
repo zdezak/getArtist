@@ -1,12 +1,16 @@
 package com.zdez.getartist.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.zdez.getartist.R
+import com.zdez.getartist.adapter.ArtistAdapter
+import com.zdez.getartist.adapter.ArtistListener
+import com.zdez.getartist.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
 
@@ -14,19 +18,22 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+        val api_key = getString(R.string.api_key)
+        val binding: MainFragmentBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
+        val viewModel =
+            ViewModelProvider(this, MainViewModelFactory(api_key)).get(MainViewModel::class.java)
+        val adapter = ArtistAdapter(ArtistListener { mbid ->
+            viewModel.onArtistClicked(mbid)
+        })
+        binding.adapter = adapter
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
-
 }

@@ -31,7 +31,7 @@ class MainFragment : Fragment() {
         val adapter = ArtistAdapter(ArtistListener { id ->
             viewModel.onArtistClicked(id)
         })
-//        binding.adapter = adapter
+        binding.ItemList.adapter = adapter
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 

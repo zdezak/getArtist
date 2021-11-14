@@ -5,24 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.zdez.getartist.API.Artist
 import com.zdez.getartist.databinding.ItemFragmentBinding
 
-class ArtistAdapter(val clickListener: ArtistListener) :
+
+class ArtistAdapter(private val clickListener: ArtistListener) :
     ListAdapter<Artist, ArtistAdapter.ViewHolder>(ArtistDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: ArtistAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(clickListener, item)
     }
 
-    class ViewHolder private constructor(val binding: ItemFragmentBinding) :
+    class ViewHolder private constructor(private val binding: ItemFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(clickListener: ArtistListener, item: Artist) {
-            binding.artist = item
+            binding.artists = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }
@@ -43,7 +43,7 @@ class ArtistAdapter(val clickListener: ArtistListener) :
 
 class ArtistDiffCallback : DiffUtil.ItemCallback<Artist>() {
     override fun areItemsTheSame(oldItem: Artist, newItem: Artist): Boolean {
-        return oldItem.mbid == newItem.mbid
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Artist, newItem: Artist): Boolean {
@@ -52,6 +52,6 @@ class ArtistDiffCallback : DiffUtil.ItemCallback<Artist>() {
 
 }
 
-class ArtistListener(val clickListener: (mbid: String) -> Unit) {
-    fun onClick(artist: Artist) = clickListener(artist.mbid)
+class ArtistListener(val clickListener: (id: String) -> Unit) {
+    fun onClick(artist: Artist) = clickListener(artist.id)
 }

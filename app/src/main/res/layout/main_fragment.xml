@@ -2,17 +2,22 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.zdez.getartist.main.MainViewModel" />
+
         <variable
             name="artist"
-            type="com.zdez.getartist.API.Artist" />
+            type="com.zdez.getartist.adapter.Artist" />
+
         <variable
             name="clickListener"
             type="com.zdez.getartist.adapter.ArtistListener" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"

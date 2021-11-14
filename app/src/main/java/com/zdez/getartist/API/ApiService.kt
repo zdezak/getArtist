@@ -1,14 +1,13 @@
 package com.zdez.getartist.API
 
-import androidx.lifecycle.LiveData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.zdez.getartist.adapter.Artist
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Part
-import retrofit2.http.Path
 
 
 private const val BASE_URL = "http://ws.audioscrobbler.com/2.0"

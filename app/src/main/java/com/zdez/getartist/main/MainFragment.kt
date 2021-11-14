@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.zdez.getartist.R
 import com.zdez.getartist.adapter.ArtistAdapter
 import com.zdez.getartist.adapter.ArtistListener
+
 import com.zdez.getartist.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -22,15 +23,15 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val api_key = getString(R.string.api_key)
+        val apiKey = getString(R.string.api_key)
         val binding: MainFragmentBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
         val viewModel =
-            ViewModelProvider(this, MainViewModelFactory(api_key)).get(MainViewModel::class.java)
-        val adapter = ArtistAdapter(ArtistListener { mbid ->
-            viewModel.onArtistClicked(mbid)
+            ViewModelProvider(this, MainViewModelFactory(apiKey)).get(MainViewModel::class.java)
+        val adapter = ArtistAdapter(ArtistListener { id ->
+            viewModel.onArtistClicked(id)
         })
-        binding.adapter = adapter
+//        binding.adapter = adapter
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 

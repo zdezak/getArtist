@@ -12,8 +12,8 @@ import retrofit2.Response
 
 class MainViewModel(private val api_key: String) : ViewModel() {
 
-    private val _navigateToAlbums = MutableLiveData<Boolean>()
-    val navigateToAlbums: LiveData<Boolean>
+    private val _navigateToAlbums = MutableLiveData<String?>()
+    val navigateToAlbums: LiveData<String?>
         get() = _navigateToAlbums
 
     private val _artist = MutableLiveData<List<Artist>>()
@@ -21,7 +21,7 @@ class MainViewModel(private val api_key: String) : ViewModel() {
         get() = _artist
 
     init {
-        _navigateToAlbums.value = false
+        _navigateToAlbums.value = null
     }
 
     fun getArtist(artist: String) {
@@ -31,14 +31,23 @@ class MainViewModel(private val api_key: String) : ViewModel() {
             }
 
             override fun onFailure(call: Call<List<Artist>>, t: Throwable) {
-                _artist.value = listOf(Artist(name = "Failure: ${t.message}", "0", "none", "none", 0))
-                //_artist.value?.get(0)?.name = "Failure: ${t.message}"
+                _artist.value = listOf(Artist(
+                    name = "Failure: ${t.message}",
+                    "0",
+                    "none",
+                    "none",
+                    0)
+                )
             }
         })
     }
 
     fun onArtistClicked(mbid: String) {
-        _navigateToAlbums.value = true
+        _navigateToAlbums.value = mbid
+    }
+
+    fun onNavigateToAlbumsComplited(){
+        _navigateToAlbums.value = null
     }
 }
 

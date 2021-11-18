@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.zdez.getartist.R
 import com.zdez.getartist.adapter.ArtistAdapter
 import com.zdez.getartist.adapter.ArtistListener
-
 import com.zdez.getartist.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -43,11 +42,11 @@ class MainFragment : Fragment() {
             }
         })
         viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {
-//            artist?.let{
-//                this.findNavController().navigate(MainFragmentDirections)
-//            }
+            it?.let{
+                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlbumsFragment(it))
+                viewModel.onNavigateToAlbumsComplited()
+            }
         })
-
 
         return binding.root
     }

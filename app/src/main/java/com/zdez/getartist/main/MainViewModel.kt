@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.zdez.getartist.API.Api
+import com.zdez.getartist.api.Api
 import com.zdez.getartist.adapter.Artist
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,11 +42,11 @@ class MainViewModel(private val api_key: String) : ViewModel() {
         })
     }
 
-    fun onArtistClicked(mbid: String) {
-        _navigateToAlbums.value = mbid
+    fun onArtistClicked(id: String) {
+        _navigateToAlbums.value = id
     }
 
-    fun onNavigateToAlbumsComplited(){
+    fun onNavigateToAlbumsCompleted(){
         _navigateToAlbums.value = null
     }
 }

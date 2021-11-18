@@ -1,4 +1,4 @@
-package com.zdez.getartist.API
+package com.zdez.getartist.api
 
 import android.widget.ImageView
 import androidx.core.net.toUri

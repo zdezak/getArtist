@@ -36,6 +36,11 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        binding.button.setOnClickListener {
+            val nameArtist = binding.searchEditText.text.toString()
+            viewModel.getArtist(nameArtist)
+        }
+
         viewModel.artist.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
@@ -44,7 +49,7 @@ class MainFragment : Fragment() {
         viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {
             it?.let{
                 this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlbumsFragment(it))
-                viewModel.onNavigateToAlbumsComplited()
+                viewModel.onNavigateToAlbumsCompleted()
             }
         })
 

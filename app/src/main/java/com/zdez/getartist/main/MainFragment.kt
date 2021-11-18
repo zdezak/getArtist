@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.zdez.getartist.R
 import com.zdez.getartist.adapter.ArtistAdapter
 import com.zdez.getartist.adapter.ArtistListener
@@ -34,6 +36,18 @@ class MainFragment : Fragment() {
         binding.ItemList.adapter = adapter
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        viewModel.artist.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
+        viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {
+//            artist?.let{
+//                this.findNavController().navigate(MainFragmentDirections)
+//            }
+        })
+
 
         return binding.root
     }

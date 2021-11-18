@@ -10,10 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel(private val api_key: String): ViewModel() {
+class MainViewModel(private val api_key: String) : ViewModel() {
 
     private val _navigateToAlbums = MutableLiveData<Boolean>()
-    val navigateToAlbums:LiveData<Boolean>
+    val navigateToAlbums: LiveData<Boolean>
         get() = _navigateToAlbums
 
     private val _artist = MutableLiveData<List<Artist>>()
@@ -25,13 +25,14 @@ class MainViewModel(private val api_key: String): ViewModel() {
     }
 
     fun getArtist(artist: String) {
-        Api.retrofitService.searchArtist(artist,api_key).enqueue(object: Callback<List<Artist>> {
+        Api.retrofitService.searchArtist(artist, api_key).enqueue(object : Callback<List<Artist>> {
             override fun onResponse(call: Call<List<Artist>>, response: Response<List<Artist>>) {
                 _artist.value = response.body()
             }
 
             override fun onFailure(call: Call<List<Artist>>, t: Throwable) {
-                _artist.value?.get(0)?.name = "Failure: ${t.message}"
+                _artist.value = listOf(Artist(name = "Failure: ${t.message}", "0", "none", "none", 0))
+                //_artist.value?.get(0)?.name = "Failure: ${t.message}"
             }
         })
     }

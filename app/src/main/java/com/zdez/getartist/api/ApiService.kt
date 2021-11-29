@@ -22,14 +22,16 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
     //Post method need?
-    @GET("/?method=artist.search&artist=&api_key&format=json")
+    @GET("/?")
     fun searchArtist(
+        @Query("method") method: String = "artist.search",
         @Query("artist") artist: String,
-        @Query("api_key") api_key: String
+        @Query("api_key") api_key: String,
+        @Query("format") format: String = "json"
     ): Call<List<Artist>>
 }
 
-object Api {
+object LastFMApi {
     val retrofitService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }

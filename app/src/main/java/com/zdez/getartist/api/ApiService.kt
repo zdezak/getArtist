@@ -11,7 +11,7 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 
-private const val BASE_URL = "http://ws.audioscrobbler.com/2.0/"
+private const val BASE_URL = "https://ws.audioscrobbler.com/2.0/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 

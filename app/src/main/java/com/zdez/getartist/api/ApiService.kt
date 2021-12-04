@@ -7,7 +7,6 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Part
 import retrofit2.http.Query
 
 
@@ -21,7 +20,7 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ApiService {
-    //Post method need?
+
     @GET("2.0/")
     fun searchArtist(
         @Query("method") method: String = "artist.search",

@@ -32,9 +32,10 @@ class MainFragment : Fragment() {
         val adapter = ArtistAdapter(ArtistListener { id ->
             viewModel.onArtistClicked(id)
         })
-        binding.ItemList.adapter = adapter
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.ItemList.adapter = adapter
 
         binding.button.setOnClickListener {
             val nameArtist = binding.searchEditText.text.toString()
@@ -47,8 +48,9 @@ class MainFragment : Fragment() {
             }
         })
         viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {
-            it?.let{
-                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToAlbumsFragment(it))
+            it?.let {
+                this.findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToAlbumsFragment(it))
                 viewModel.onNavigateToAlbumsCompleted()
             }
         })

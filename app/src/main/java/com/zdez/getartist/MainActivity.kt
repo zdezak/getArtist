@@ -1,7 +1,7 @@
 package com.zdez.getartist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.zdez.getartist.main.MainFragment
 
 class MainActivity : AppCompatActivity() {

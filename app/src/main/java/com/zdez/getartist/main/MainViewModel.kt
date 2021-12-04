@@ -1,12 +1,12 @@
 package com.zdez.getartist.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.zdez.getartist.adapter.Artist
+import com.zdez.getartist.json_schema.Artist
 import com.zdez.getartist.api.LastFMApi
+import com.zdez.getartist.json_schema.JsonObjectFM
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,24 +27,16 @@ class MainViewModel(private val api_key: String) : ViewModel() {
 
     fun getArtist(artist: String) {
         LastFMApi.retrofitService.searchArtist(artist = artist, api_key = api_key)
-            .enqueue(object : Callback<List<Artist>> {
+            .enqueue(object : Callback<JsonObjectFM> {
                 override fun onResponse(
-                    call: Call<List<Artist>>,
-                    response: Response<List<Artist>>
+                    call: Call<JsonObjectFM>,
+                    response: Response<JsonObjectFM>
                 ) {
-                    _artist.value = response.body()
+                    _artist.value = response.body()?.results?.artists?.artist
                 }
 
-                override fun onFailure(call: Call<List<Artist>>, t: Throwable) {
-                    _artist.value = listOf(
-                        Artist(
-                            name = "Failure: ${t.message}",
-                            "0",
-                            "none",
-                            "none",
-                            0
-                        )
-                    )
+                override fun onFailure(call: Call<JsonObjectFM>, t: Throwable) {
+                    _artist.value = listOf<Artist>()
                 }
             })
     }

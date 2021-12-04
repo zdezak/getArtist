@@ -2,7 +2,7 @@ package com.zdez.getartist.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zdez.getartist.adapter.Artist
+import com.zdez.getartist.json_schema.JsonObjectFM
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -27,7 +27,7 @@ interface ApiService {
         @Query("artist") artist: String,
         @Query("api_key") api_key: String,
         @Query("format") format: String = "json"
-    ): Call<List<Artist>>
+    ): Call<JsonObjectFM>
 }
 
 object LastFMApi {

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zdez.getartist.databinding.ItemFragmentBinding
+import com.zdez.getartist.json_schema.Artist
 
 
 class ArtistAdapter(private val clickListener: ArtistListener) :

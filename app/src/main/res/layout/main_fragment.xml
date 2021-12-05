@@ -18,10 +18,6 @@
             type="com.zdez.getartist.adapter.ArtistListener" />
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
@@ -96,14 +92,4 @@
                 app:layout_constraintTop_toBottomOf="@+id/search_editText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/navdrawer_menu" />
-
-
-    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

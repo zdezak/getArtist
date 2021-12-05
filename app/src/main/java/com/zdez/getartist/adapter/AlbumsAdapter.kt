@@ -21,7 +21,7 @@ class AlbumsAdapter : ListAdapter<Album, AlbumsAdapter.ViewHolder>(AlbumsDiffCal
     class ViewHolder private constructor(private val binding: ItemAlbumsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Album) {
-            binding.albums = item
+            binding.album = item
             binding.executePendingBindings()
         }
 

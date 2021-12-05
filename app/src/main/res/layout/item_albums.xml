@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="albums"
+            name="album"
             type="com.zdez.getartist.albums.Album" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +26,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:url="@{albums.url}" />
+            app:url="@{album.images.get(2).text}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -23,7 +23,7 @@ class ArtistAdapter(private val clickListener: ArtistListener) :
     class ViewHolder private constructor(private val binding: ItemFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(clickListener: ArtistListener, item: Artist) {
-            binding.artists = item
+            binding.artist = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
         }

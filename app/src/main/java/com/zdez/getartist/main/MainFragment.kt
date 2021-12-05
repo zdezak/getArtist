@@ -2,13 +2,16 @@ package com.zdez.getartist.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.zdez.getartist.R
 import com.zdez.getartist.adapter.ArtistAdapter
 import com.zdez.getartist.adapter.ArtistListener
@@ -24,6 +27,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        var artistName: String = "default"
         val apiKey = getString(R.string.api_key)
         val binding: MainFragmentBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
@@ -33,13 +37,13 @@ class MainFragment : Fragment() {
             viewModel.onArtistClicked(id)
         })
 
-        binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.ItemList.adapter = adapter
+        binding.lifecycleOwner = this
 
         binding.button.setOnClickListener {
-            val nameArtist = binding.searchEditText.text.toString()
-            viewModel.getArtist(nameArtist)
+            artistName = binding.searchEditText.text.toString()
+            viewModel.getArtist(artistName)
         }
 
         viewModel.artist.observe(viewLifecycleOwner, {
@@ -47,14 +51,23 @@ class MainFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-        viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {artist->
+            artist?.let {artistId->
                 this.findNavController()
-                    .navigate(MainFragmentDirections.actionMainFragmentToAlbumsFragment(it))
+                    .navigate(
+                        MainFragmentDirections.actionMainFragmentToAlbumsFragment(
+                            artistId,
+                            artistName
+                        )
+                    )
                 viewModel.onNavigateToAlbumsCompleted()
             }
         })
 
         return binding.root
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
+                || super.onOptionsItemSelected(item)
     }
 }

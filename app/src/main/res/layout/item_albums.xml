@@ -2,34 +2,30 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable
-            name="viewModel"
-            type="com.zdez.getartist.albums.AlbumsViewModel" />
+
         <variable
             name="albums"
-            type="com.zdez.getartist.albums.Topalbums" />
+            type="com.zdez.getartist.albums.Album" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/albums"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".albums.AlbumsFragment">
+        tools:context=".albums.ItemAlbums">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/albums_list"
+        <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:contentDescription="@string/images_for_albums"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:url="@{albums.url}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

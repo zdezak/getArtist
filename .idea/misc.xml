@@ -4,10 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/albums_fragment.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/item_albums.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/item_fragment.xml" value="0.5" />
         <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/list_fragment.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/main_activity.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/layout/nav_header.xml" value="0.23324275362318841" />
+        <entry key="..\:/Users/evgen/AndroidStudioProjects/getArtist/app/src/main/res/menu/navdrawer_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

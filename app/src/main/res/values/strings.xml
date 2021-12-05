@@ -3,4 +3,5 @@
     <string name="search_textView">Поиск:</string>
     <string name="search_button">Искать</string>
     <string name="Template">Пример</string>
+    <string name="images_for_albums">Images for albums</string>
 </resources>

@@ -2,8 +2,8 @@ package com.zdez.getartist.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zdez.getartist.albums.Topalbums
-import com.zdez.getartist.json_schema.JsonObjectFM
+import com.zdez.getartist.albums.TopAlbums
+import com.zdez.getartist.main.ArtistData
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -28,7 +28,7 @@ interface ApiService {
         @Query("artist") artist: String,
         @Query("api_key") api_key: String,
         @Query("format") format: String = "json"
-    ): Call<JsonObjectFM>
+    ): Call<ArtistData>
 
     @GET("2.0/?method=artist.getTopAlbums")
     fun searchAlbums(
@@ -36,7 +36,7 @@ interface ApiService {
         @Query("mbid") id: String,
         @Query("api_key") api_key: String,
         @Query("format") format: String = "json"
-    ): Call<Topalbums>
+    ): Call<TopAlbums>
 }
 
 object LastFMApi {

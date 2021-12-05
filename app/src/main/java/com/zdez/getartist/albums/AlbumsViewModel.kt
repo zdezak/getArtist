@@ -18,19 +18,20 @@ class AlbumsViewModel(val api_key: String, val artistId: String, val artist: Str
         getAlbums()
     }
 
-    fun getAlbums() {
+    private fun getAlbums() {
         LastFMApi.retrofitService.searchAlbums(api_key = api_key, id = artistId, artist = artist)
-            .enqueue(object : Callback<Topalbums> {
+            .enqueue(object : Callback<TopAlbums> {
                 override fun onResponse(
-                    call: Call<Topalbums>,
-                    response: Response<Topalbums>
+                    call: Call<TopAlbums>,
+                    response: Response<TopAlbums>
                 ) {
                     _albums.value = response.body()?.albums
                 }
-                    override fun onFailure(call: Call<Topalbums>, t: Throwable) {
-                        _albums.value = listOf()
-                    }
+
+                override fun onFailure(call: Call<TopAlbums>, t: Throwable) {
+                    _albums.value = listOf()
                 }
+            }
             )
     }
 }

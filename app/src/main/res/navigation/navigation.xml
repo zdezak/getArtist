@@ -16,11 +16,12 @@
     <fragment
         android:id="@+id/albumsFragment"
         android:name="com.zdez.getartist.albums.AlbumsFragment"
-        android:label="albums_fragment"
+        android:label="AlbumsFragment"
         tools:layout="@layout/albums_fragment">
         <argument
             android:name="id"
             app:argType="string" />
-        <argument android:name="artist" />
+        <argument android:name="artist"
+            app:argType="string" />
     </fragment>
 </navigation>

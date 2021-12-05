@@ -51,8 +51,8 @@ class MainFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-        viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer {artist->
-            artist?.let {artistId->
+        viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer { artist ->
+            artist?.let { artistId ->
                 this.findNavController()
                     .navigate(
                         MainFragmentDirections.actionMainFragmentToAlbumsFragment(
@@ -66,6 +66,7 @@ class MainFragment : Fragment() {
 
         return binding.root
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
                 || super.onOptionsItemSelected(item)

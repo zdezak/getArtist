@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.zdez.getartist.json_schema.Artist
 import com.zdez.getartist.api.LastFMApi
-import com.zdez.getartist.json_schema.JsonObjectFM
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,15 +25,15 @@ class MainViewModel(private val api_key: String) : ViewModel() {
 
     fun getArtist(artist: String) {
         LastFMApi.retrofitService.searchArtist(artist = artist, api_key = api_key)
-            .enqueue(object : Callback<JsonObjectFM> {
+            .enqueue(object : Callback<ArtistData> {
                 override fun onResponse(
-                    call: Call<JsonObjectFM>,
-                    response: Response<JsonObjectFM>
+                    call: Call<ArtistData>,
+                    response: Response<ArtistData>
                 ) {
                     _artist.value = response.body()?.results?.artists?.artist
                 }
 
-                override fun onFailure(call: Call<JsonObjectFM>, t: Throwable) {
+                override fun onFailure(call: Call<ArtistData>, t: Throwable) {
                     _artist.value = listOf<Artist>()
                 }
             })

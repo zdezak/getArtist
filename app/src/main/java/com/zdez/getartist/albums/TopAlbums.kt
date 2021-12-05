@@ -52,7 +52,7 @@ data class Attr(
 
 data class Example(
     @Json(name = "topalbums")
-    val topAlbums: Topalbums
+    val topAlbums: TopAlbums
 )
 
 data class Image(
@@ -63,7 +63,7 @@ data class Image(
     val size: String
 )
 
-data class Topalbums(
+data class TopAlbums(
     @Json(name = "album")
     val albums: List<Album>,
 

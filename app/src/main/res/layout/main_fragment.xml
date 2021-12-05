@@ -11,7 +11,7 @@
 
         <variable
             name="artist"
-            type="com.zdez.getartist.json_schema.Artist" />
+            type="com.zdez.getartist.main.Artist" />
 
         <variable
             name="clickListener"

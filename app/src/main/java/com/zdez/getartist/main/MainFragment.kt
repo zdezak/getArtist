@@ -27,7 +27,6 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var artistName: String = "default"
         val apiKey = getString(R.string.api_key)
         val binding: MainFragmentBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.main_fragment, container, false)
@@ -40,6 +39,7 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         binding.ItemList.adapter = adapter
         binding.lifecycleOwner = this
+        var artistName: String = binding.searchEditText.text.toString()
 
         binding.button.setOnClickListener {
             artistName = binding.searchEditText.text.toString()
@@ -53,6 +53,7 @@ class MainFragment : Fragment() {
         })
         viewModel.navigateToAlbums.observe(viewLifecycleOwner, Observer { artist ->
             artist?.let { artistId ->
+                artistName = binding.searchEditText.text.toString()
                 this.findNavController()
                     .navigate(
                         MainFragmentDirections.actionMainFragmentToAlbumsFragment(

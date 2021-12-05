@@ -2,7 +2,7 @@ package com.zdez.getartist.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zdez.getartist.albums.TopAlbums
+import com.zdez.getartist.albums.AlbumsData
 import com.zdez.getartist.main.ArtistData
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -36,7 +36,7 @@ interface ApiService {
         @Query("mbid") id: String,
         @Query("api_key") api_key: String,
         @Query("format") format: String = "json"
-    ): Call<TopAlbums>
+    ): Call<AlbumsData>
 }
 
 object LastFMApi {

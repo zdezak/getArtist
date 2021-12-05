@@ -50,7 +50,7 @@ data class Attr(
     val total: String
 )
 
-data class Example(
+data class AlbumsData(
     @Json(name = "topalbums")
     val topAlbums: TopAlbums
 )

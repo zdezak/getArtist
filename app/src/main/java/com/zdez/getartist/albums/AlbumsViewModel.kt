@@ -1,5 +1,6 @@
 package com.zdez.getartist.albums
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,16 +20,16 @@ class AlbumsViewModel(val api_key: String, val artistId: String, val artist: Str
     }
 
     private fun getAlbums() {
-        LastFMApi.retrofitService.searchAlbums(api_key = api_key, id = artistId, artist = artist)
-            .enqueue(object : Callback<TopAlbums> {
+        LastFMApi.retrofitService.searchAlbums(artist = artist,id = artistId, api_key = api_key)
+            .enqueue(object : Callback<AlbumsData> {
                 override fun onResponse(
-                    call: Call<TopAlbums>,
-                    response: Response<TopAlbums>
+                    call: Call<AlbumsData>,
+                    response: Response<AlbumsData>
                 ) {
-                    _albums.value = response.body()?.albums
+                    _albums.value = response.body()?.topAlbums?.albums
                 }
 
-                override fun onFailure(call: Call<TopAlbums>, t: Throwable) {
+                override fun onFailure(call: Call<AlbumsData>, t: Throwable) {
                     _albums.value = listOf()
                 }
             }

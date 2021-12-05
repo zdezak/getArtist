@@ -10,7 +10,7 @@ data class Album(
     val playCount: Int,
 
     @Json(name = "mbid")
-    val id: String,
+    val mbid: String?,
 
     @Json(name = "url")
     val url: String,

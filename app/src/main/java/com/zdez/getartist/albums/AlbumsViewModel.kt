@@ -20,7 +20,7 @@ class AlbumsViewModel(val api_key: String, val artistId: String, val artist: Str
     }
 
     private fun getAlbums() {
-        LastFMApi.retrofitService.searchAlbums(artist = artist,id = artistId, api_key = api_key)
+        LastFMApi.retrofitService.searchAlbums(artist = artist,mbid = artistId, api_key = api_key)
             .enqueue(object : Callback<AlbumsData> {
                 override fun onResponse(
                     call: Call<AlbumsData>,
@@ -31,6 +31,7 @@ class AlbumsViewModel(val api_key: String, val artistId: String, val artist: Str
 
                 override fun onFailure(call: Call<AlbumsData>, t: Throwable) {
                     _albums.value = listOf()
+                    Log.i("albumsFail", t.message.toString())
                 }
             }
             )

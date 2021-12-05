@@ -33,7 +33,7 @@ interface ApiService {
     @GET("2.0/?method=artist.getTopAlbums")
     fun searchAlbums(
         @Query("artist") artist: String,
-        @Query("mbid") id: String,
+        @Query("mbid") mbid: String,
         @Query("api_key") api_key: String,
         @Query("format") format: String = "json"
     ): Call<AlbumsData>

@@ -41,7 +41,7 @@ class AlbumsAdapter : ListAdapter<Album, AlbumsAdapter.ViewHolder>(AlbumsDiffCal
 
 class AlbumsDiffCallback : DiffUtil.ItemCallback<Album>() {
     override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.mbid == newItem.mbid
     }
 
     override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {

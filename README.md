@@ -28,3 +28,5 @@
 Форма поиска + найденные результаты
 
 Экран со списком альбомов исполнителя
+Примечание:
+for build app from source need get API Key on https://www.last.fm/api
